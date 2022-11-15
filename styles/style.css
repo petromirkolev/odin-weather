@@ -37,6 +37,7 @@ body {
 .header {
   display: flex;
   justify-content: center;
+  align-items: center;
   color: white;
   background-color: hsla(0, 0%, 0%, 0.3);
 }
@@ -45,13 +46,13 @@ body {
 }
 /* Main container styling */
 .main {
-  display: none;
+  display: grid;
   text-align: center;
   justify-content: center;
   padding: 100px;
   grid-template-rows: 1fr 1fr;
   width: 100vw;
-  height: 100vh;
+  height: auto;
 }
 .main h1,
 .result h1 {
@@ -118,8 +119,9 @@ body {
 }
 /* Display result styling */
 .result {
-  display: flex;
+  display: none;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
   gap: 50px;
 }
@@ -128,6 +130,7 @@ body {
   color: white;
 }
 .result h3 {
+  display: flex;
   font-weight: 100;
   font-size: 2rem;
   color: rgba(255, 255, 255, 0.9);

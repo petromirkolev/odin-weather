@@ -1,25 +1,18 @@
-const APIkey = '2a1fe94692f2f79a55650497881126cf';
+import renderView from '../scripts/cityView.js';
+import findCity from '../scripts/findCity.js';
+
+export const APIkey = '2a1fe94692f2f79a55650497881126cf';
+
 const loc = navigator.geolocation.getCurrentPosition(loc => loc);
-// http://openweathermap.org/img/w/02d.png
 
-// If search is used
-document.querySelectorAll('.submit')[1].addEventListener('click', async e => {
+// Find city through search input
+document.querySelector('.submit').addEventListener('click', async e => {
   const searchQuery = document.querySelector('#search-bar').value;
-  const cityURL = `http://api.openweathermap.org/geo/1.0/direct?q=sofia&limit=2&appid=${APIkey}`;
-
-  // const cityURL = `http://api.openweathermap.org/geo/1.0/direct?q=${searchQuery}&limit=2&appid=${APIkey}`;
-  const city = await findCity(cityURL);
-  const result = await findCity(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${city[0].lat}&lon=${city[0].lon}&appid=${APIkey}`
-  );
-  console.log(result.main);
-  console.log(result.weather);
-  console.log(result.wind);
+  const city = await findCity(searchQuery);
+  renderView(city);
 });
 
-// Find city function
-async function findCity(url) {
-  const data = await fetch(url);
-  const res = await data.json();
-  return res;
-}
+// Find city through current location
+document.querySelector('.location').addEventListener('click', async e => {
+  console.log(loc);
+});
