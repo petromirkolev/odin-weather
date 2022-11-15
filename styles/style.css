@@ -125,6 +125,14 @@ body {
   flex-direction: column;
   gap: 50px;
 }
+
+.city-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 50px;
+}
 .result li {
   list-style: none;
   color: white;

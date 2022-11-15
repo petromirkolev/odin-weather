@@ -1,18 +1,40 @@
 import renderView from '../scripts/cityView.js';
 import findCity from '../scripts/findCity.js';
 
-export const APIkey = '2a1fe94692f2f79a55650497881126cf';
+const query = document.querySelector.bind(document);
 
-const loc = navigator.geolocation.getCurrentPosition(loc => loc);
+// Set default parameters
+let imperial = false;
+let metric = true;
+let city;
+
+// Imperial/Metric switcher
+query('.imperial').addEventListener('click', async () => {
+  imperial = true;
+  metric = false;
+  renderView(city);
+});
+query('.metric').addEventListener('click', async () => {
+  imperial = false;
+  metric = true;
+  renderView(city);
+});
 
 // Find city through search input
-document.querySelector('.submit').addEventListener('click', async e => {
-  const searchQuery = document.querySelector('#search-bar').value;
-  const city = await findCity(searchQuery);
+query('.submit').addEventListener('click', async () => {
+  city = await findCity();
   renderView(city);
 });
 
 // Find city through current location
-document.querySelector('.location').addEventListener('click', async e => {
-  console.log(loc);
+query('.location').addEventListener('click', async () => {
+  // To do on personal mac
 });
+
+// Find another city
+query('.another-city').addEventListener('click', async () => {
+  query('.main').style.display = 'grid';
+  query('.result').style.display = 'none';
+});
+
+export { imperial, metric };

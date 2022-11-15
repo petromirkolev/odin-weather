@@ -1,6 +1,9 @@
-import { APIkey } from '../scripts/index.js';
+const APIkey = '2a1fe94692f2f79a55650497881126cf';
 
-export default async function findCity(searchQuery) {
+export default async function findCity() {
+  const searchQuery = document.querySelector('#search-bar').value;
+  document.querySelector('#search-bar').value = '';
+
   const data = await fetch(
     `http://api.openweathermap.org/geo/1.0/direct?q=${searchQuery}&limit=2&appid=${APIkey}`
   );
@@ -9,5 +12,6 @@ export default async function findCity(searchQuery) {
     `https://api.openweathermap.org/data/2.5/weather?lat=${res[0].lat}&lon=${res[0].lon}&appid=${APIkey}`
   );
   const city = await result.json();
+
   return city;
 }
