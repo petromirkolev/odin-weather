@@ -5,13 +5,64 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./styles/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
     <title>Odin Weather</title>
   </head>
   <body>
-    <section class="header"></section>
-    <section class="search-bar"></section>
-    <section class="weather-display"></section>
-
-    <script src="./scripts/index.js"></script>
+    <header class="header"><h1>What's the weather like in...</h1></header>
+    <section class="main">
+      <h1>Search for a city</h1>
+      <div class="search-bar">
+        <input type="text" name="search-bar" id="search-bar" />
+        <button class="submit">
+          <span class="material-symbols-outlined"> search </span>
+        </button>
+      </div>
+      <div class="current-location">
+        <h3>Or check the weather at your current location</h3>
+        <button>
+          <span class="material-symbols-outlined"> location_on </span>
+        </button>
+      </div>
+    </section>
+    <section class="result">
+      <h1>Sofia</h1>
+      <h3>The weather in Sofia is currently misty 💨</h3>
+      <ul class="weather-data">
+        <!-- 🥶🥵🙂🌪☀️🌤⛅️🌥☁️🌦🌧⛈🌩🌨🌬❄️☃️💧💨💦☔️☂️🌫 -->
+        <div class="element">
+          <h3>The current temperature is</h3>
+          <li>🌡 28℃</li>
+        </div>
+        <div class="element">
+          <h3>Feels like</h3>
+          <li>🥶 10℃</li>
+        </div>
+        <div class="element">
+          <h3>Humidity</h3>
+          <li>10%</li>
+        </div>
+        <div class="element">
+          <h3>Pressure</h3>
+          <li>1018</li>
+        </div>
+        <div class="element">
+          <h3>Wind</h3>
+          <li>1.03 kmph 0°</li>
+        </div>
+      </ul>
+      <div class="imperial-metric">
+        <p class="imperial">Imperial</p>
+        <p>/</p>
+        <p class="metric">Metric</p>
+      </div>
+      <div class="another-city">
+        <p>Find another city</p>
+      </div>
+    </section>
+    <script type="module" src="./scripts/index.js"></script>
   </body>
 </html>
