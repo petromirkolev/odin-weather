@@ -6,7 +6,8 @@ export async function findCity(searchQuery) {
   );
   const res = await data.json();
   const result = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${res[0].lat}&lon=${res[0].lon}&appid=${APIkey}`
+    `https://api.openweathermap.org/data/2.5/weather?lat=${res[0].lat}&lon=${res[0].lon}&appid=${APIkey}`,
+    { mode: 'cors' }
   );
   const city = await result.json();
   return city;
@@ -14,7 +15,10 @@ export async function findCity(searchQuery) {
 
 export async function locateCity(lat, lon) {
   const result = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${APIkey}`
+    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${APIkey}`,
+    {
+      mode: 'cors',
+    }
   );
   const city = await result.json();
   return city;
