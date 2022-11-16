@@ -1,6 +1,8 @@
+// Imports
 import renderView from '../scripts/cityView.js';
 import { findCity, locateCity } from '../scripts/findCity.js';
 
+// Global variables
 const query = document.querySelector.bind(document);
 
 // Set default parameters
@@ -19,7 +21,6 @@ query('.metric').addEventListener('click', async () => {
   metric = true;
   renderView(city);
 });
-
 // Find city through search input
 query('.submit').addEventListener('click', async () => {
   const searchQuery = document.querySelector('#search-bar').value;
@@ -28,7 +29,15 @@ query('.submit').addEventListener('click', async () => {
   city = await findCity(searchQuery);
   renderView(city);
 });
-
+// Allow submit via Enter key
+query('#search-bar').addEventListener('keypress', async e => {
+  if (e.key !== 'Enter') return;
+  const searchQuery = document.querySelector('#search-bar').value;
+  if (searchQuery === '') return;
+  document.querySelector('#search-bar').value = '';
+  city = await findCity(searchQuery);
+  renderView(city);
+});
 // Find city through current location
 query('.location').addEventListener('click', () => {
   navigator.geolocation.getCurrentPosition(async loc => {
@@ -36,11 +45,10 @@ query('.location').addEventListener('click', () => {
     renderView(city);
   });
 });
-
 // Find another city
 query('.another-city').addEventListener('click', async () => {
   query('.main').style.display = 'grid';
   query('.result').style.display = 'none';
 });
-
+// Exports
 export { imperial, metric };
