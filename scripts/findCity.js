@@ -2,7 +2,7 @@ const APIkey = '2a1fe94692f2f79a55650497881126cf';
 
 export async function findCity(searchQuery) {
   const data = await fetch(
-    `http://api.openweathermap.org/geo/1.0/direct?q=${searchQuery}&limit=2&appid=${APIkey}`
+    `https://api.openweathermap.org/geo/1.0/direct?q=${searchQuery}&limit=2&appid=${APIkey}`
   );
   const res = await data.json();
   const result = await fetch(
