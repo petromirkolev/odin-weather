@@ -1,5 +1,5 @@
 import renderView from '../scripts/cityView.js';
-import findCity from '../scripts/findCity.js';
+import { findCity, locateCity } from '../scripts/findCity.js';
 
 const query = document.querySelector.bind(document);
 
@@ -22,13 +22,19 @@ query('.metric').addEventListener('click', async () => {
 
 // Find city through search input
 query('.submit').addEventListener('click', async () => {
-  city = await findCity();
+  const searchQuery = document.querySelector('#search-bar').value;
+  if (searchQuery === '') return;
+  document.querySelector('#search-bar').value = '';
+  city = await findCity(searchQuery);
   renderView(city);
 });
 
 // Find city through current location
-query('.location').addEventListener('click', async () => {
-  // To do on personal mac
+query('.location').addEventListener('click', () => {
+  navigator.geolocation.getCurrentPosition(async loc => {
+    city = await locateCity(loc.coords.latitude, loc.coords.longitude);
+    renderView(city);
+  });
 });
 
 // Find another city
