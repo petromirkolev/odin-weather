@@ -15,10 +15,7 @@ export async function findCity(searchQuery) {
 
 export async function locateCity(lat, lon) {
   const result = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${APIkey}`,
-    {
-      mode: 'cors',
-    }
+    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${APIkey}`
   );
   const city = await result.json();
   return city;
